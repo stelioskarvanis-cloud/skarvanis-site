@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skarvanis – Gestão Contábil e Financeira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#080e22;
+    --bg-mid:#0e1c46;
+    --bg-card:rgba(255,255,255,0.05);
+    --border-soft:rgba(255,255,255,0.10);
+    --blue:#2f6fed;
+    --cyan:#38bdf8;
+    --purple:#8b7ff6;
+    --gold:#ffcf5c;
+    --text-main:#f4f6fb;
+    --text-muted:#a9b4d0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:linear-gradient(180deg,var(--bg-deep) 0%,var(--bg-mid) 45%,var(--bg-deep) 100%);
+    color:var(--text-main);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.brand-name{font-family:'Sora',sans-serif;}
+  a{text-decoration:none;color:inherit;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(8,14,34,0.75);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border-soft);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;max-width:1180px;margin:0 auto;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .logo-mark{
+    width:44px;height:44px;border-radius:50%;
+    background:linear-gradient(135deg,var(--cyan),var(--blue) 60%,var(--purple));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Sora',sans-serif;font-weight:800;font-size:20px;color:#fff;
+    flex-shrink:0;
+  }
+  .brand-text .brand-name{font-size:19px;font-weight:700;line-height:1.1;}
+  .brand-text .brand-sub{font-size:11px;letter-spacing:.08em;color:var(--cyan);font-weight:600;}
+  nav.links{display:flex;gap:36px;}
+  nav.links a{font-size:14.5px;color:var(--text-muted);font-weight:500;transition:color .2s;}
+  nav.links a:hover{color:#fff;}
+  .btn-wpp{
+    display:flex;align-items:center;gap:8px;
+    background:linear-gradient(135deg,var(--blue),var(--purple));
+    padding:10px 20px;border-radius:999px;font-size:14.5px;font-weight:600;color:#fff;
+    box-shadow:0 6px 18px rgba(47,111,237,.35);
+    transition:transform .2s;
+  }
+  .btn-wpp:hover{transform:translateY(-2px);}
+  .mobile-toggle{display:none;background:none;border:none;color:#fff;font-size:26px;cursor:pointer;}
+
+  /* Hero */
+  .hero{position:relative;padding:56px 32px 36px;text-align:center;overflow:hidden;}
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(600px 300px at 20% 0%, rgba(56,189,248,.18), transparent 60%),
+      radial-gradient(600px 300px at 80% 10%, rgba(139,127,246,.18), transparent 60%);
+    pointer-events:none;
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--bg-card);border:1px solid var(--border-soft);
+    padding:7px 16px;border-radius:999px;font-size:13px;font-weight:600;
+    letter-spacing:.03em;color:var(--cyan);margin-bottom:16px;
+  }
+  .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);}
+  .hero h1{
+    font-size:clamp(2.4rem,6vw,4.4rem);
+    font-weight:800;line-height:1.08;letter-spacing:-.02em;
+    max-width:920px;margin:0 auto 16px;
+  }
+  .hero h1 .g1{background:linear-gradient(90deg,#fff,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero h1 .g2{background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero h1 .g3{background:linear-gradient(90deg,var(--gold),#9ee6b8);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero p.lead{
+    max-width:620px;margin:0 auto 22px;color:var(--text-muted);
+    font-size:1.05rem;line-height:1.55;
+  }
+  .hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:26px;}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--blue),var(--purple));
+    padding:12px 26px;border-radius:999px;font-weight:700;font-size:14.5px;
+    box-shadow:0 8px 22px rgba(47,111,237,.4);transition:transform .2s;
+  }
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-secondary{
+    background:rgba(255,255,255,0.06);border:1px solid var(--border-soft);
+    padding:12px 26px;border-radius:999px;font-weight:600;font-size:14.5px;
+    transition:background .2s;
+  }
+  .btn-secondary:hover{background:rgba(255,255,255,0.12);}
+  .pill-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .pill{
+    display:flex;align-items:center;gap:8px;
+    background:var(--bg-card);border:1px solid var(--border-soft);
+    padding:9px 18px;border-radius:999px;font-size:13.5px;font-weight:600;color:var(--text-main);
+  }
+
+  /* Stats bar */
+  .stats{
+    border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);
+    background:rgba(255,255,255,0.02);
+    padding:26px 32px;
+  }
+  .stats-grid{
+    max-width:1180px;margin:0 auto;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;
+  }
+  .stat h3{font-size:clamp(1.6rem,3vw,2.2rem);background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .stat span{display:block;font-size:12.5px;letter-spacing:.05em;color:var(--text-muted);margin-top:6px;text-transform:uppercase;}
+
+  /* Section generic */
+  section.block{padding:52px 32px;}
+  .eyebrow{font-size:12.5px;letter-spacing:.1em;color:var(--cyan);font-weight:700;text-transform:uppercase;margin-bottom:8px;}
+  .section-title{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800;line-height:1.2;max-width:760px;}
+  .section-title .accent{color:var(--gold);}
+  .section-sub{color:var(--text-muted);max-width:640px;margin-top:10px;font-size:1rem;line-height:1.55;}
+
+  /* Professionals */
+  .pro-panel{
+    display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+    background:linear-gradient(135deg,rgba(47,111,237,.14),rgba(139,127,246,.10));
+    border:1px solid var(--border-soft);border-radius:22px;padding:30px;
+  }
+  .pro-icon{
+    width:76px;height:76px;border-radius:20px;flex-shrink:0;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
+    display:flex;align-items:center;justify-content:center;font-size:32px;
+  }
+  .pro-content{flex:1;min-width:280px;}
+  .pro-tags{margin-top:10px;color:var(--text-muted);font-size:14.5px;line-height:1.7;}
+  .pro-tags b{color:var(--text-main);font-weight:600;}
+
+  /* Services */
+  .services-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px;
+  }
+  .service-card{
+    background:var(--bg-card);border:1px solid var(--border-soft);
+    border-radius:16px;padding:20px;transition:transform .25s,border-color .25s;
+  }
+  .service-card:hover{transform:translateY(-4px);border-color:rgba(56,189,248,.4);}
+  .service-icon{
+    width:48px;height:48px;border-radius:14px;
+    display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px;
+    background:rgba(56,189,248,.12);
+  }
+  .service-card h3{font-size:1.05rem;font-weight:700;margin-bottom:6px;}
+  .service-card p{color:var(--text-muted);font-size:14.5px;line-height:1.6;}
+
+  .modes-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .mode-card{
+    background:var(--bg-card);border:1px solid var(--border-soft);border-radius:16px;
+    padding:18px 22px;min-width:170px;display:flex;flex-direction:column;gap:4px;
+  }
+  .mode-card .mlabel{font-size:11px;letter-spacing:.08em;color:var(--text-muted);text-transform:uppercase;}
+  .mode-card .mvalue{font-size:15px;font-weight:700;}
+
+  .services-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;}
+
+  /* IA na Contabilidade */
+  .ai-section{background:rgba(255,255,255,0.02);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);}
+  .ai-panel{
+    display:flex;align-items:center;gap:36px;flex-wrap:wrap;
+    background:linear-gradient(135deg,rgba(139,127,246,.14),rgba(56,189,248,.10));
+    border:1px solid var(--border-soft);border-radius:22px;padding:32px;
+  }
+  .ai-icon{
+    width:70px;height:70px;border-radius:18px;flex-shrink:0;
+    background:linear-gradient(135deg,var(--purple),var(--cyan));
+    display:flex;align-items:center;justify-content:center;font-size:30px;
+  }
+  .ai-content{flex:1;min-width:280px;}
+  .ai-content p{color:var(--text-muted);font-size:14.5px;line-height:1.65;margin-top:8px;max-width:640px;}
+  .ai-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+  .ai-badges span{
+    background:rgba(255,255,255,0.06);border:1px solid var(--border-soft);
+    padding:6px 14px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--text-main);
+  }
+
+  /* Reforma Tributária */
+  .reform-section{background:rgba(255,255,255,0.02);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);}
+  .reform-head{max-width:700px;}
+  .reform-alert{
+    margin-top:22px;
+    display:flex;gap:14px;align-items:flex-start;
+    background:linear-gradient(135deg,rgba(255,207,92,.10),rgba(139,127,246,.08));
+    border:1px solid rgba(255,207,92,.25);border-radius:16px;padding:16px 20px;
+  }
+  .reform-alert .ra-icon{font-size:22px;flex-shrink:0;}
+  .reform-alert p{color:var(--text-muted);font-size:14.5px;line-height:1.7;}
+  .reform-alert b{color:var(--text-main);}
+
+  .timeline{margin-top:28px;position:relative;}
+  .timeline-track{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative;
+  }
+  .timeline-track::before{
+    content:"";position:absolute;top:22px;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,var(--cyan),var(--purple),var(--gold));
+    opacity:.35;
+  }
+  .tl-item{position:relative;padding-top:40px;}
+  .tl-dot{
+    position:absolute;top:8px;left:0;width:28px;height:28px;border-radius:50%;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:800;color:#0b1330;
+  }
+  .tl-item h4{font-size:15.5px;font-weight:700;margin-bottom:8px;}
+  .tl-item p{color:var(--text-muted);font-size:13.5px;line-height:1.6;}
+
+  .reform-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px;}
+  .reform-card{
+    background:var(--bg-card);border:1px solid var(--border-soft);border-radius:16px;padding:20px;
+  }
+  .reform-card .rc-icon{
+    width:40px;height:40px;border-radius:12px;margin-bottom:10px;
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+    background:rgba(139,127,246,.14);
+  }
+  .reform-card h3{font-size:1.02rem;font-weight:700;margin-bottom:10px;}
+  .reform-card p{color:var(--text-muted);font-size:14px;line-height:1.65;}
+  .reform-cta{
+    margin-top:26px;text-align:center;
+  }
+  .reform-cta p{color:var(--text-muted);margin-bottom:18px;font-size:15px;}
+
+  /* Tabela de percentuais */
+  .rate-table{margin-top:28px;}
+  .rate-table h3.sub-title{font-size:1.2rem;font-weight:700;margin-bottom:6px;}
+  .rate-table .sub-note{color:var(--text-muted);font-size:13.5px;margin-bottom:14px;}
+  .rate-rows{border:1px solid var(--border-soft);border-radius:16px;overflow:hidden;}
+  .rate-row{
+    display:grid;grid-template-columns:1fr auto 90px;gap:16px;align-items:center;
+    padding:12px 18px;border-bottom:1px solid var(--border-soft);background:rgba(255,255,255,0.02);
+  }
+  .rate-row:last-child{border-bottom:none;}
+  .rate-row .rr-name{font-weight:600;font-size:14.5px;}
+  .rate-row .rr-desc{color:var(--text-muted);font-size:12.5px;margin-top:2px;}
+  .rate-row .rr-pct{
+    font-family:'Sora',sans-serif;font-weight:800;font-size:1.1rem;text-align:right;white-space:nowrap;
+  }
+  .rr-pct.p60{color:#4ade80;}
+  .rr-pct.p30{color:var(--cyan);}
+  .rr-pct.p100{color:var(--gold);}
+  .rr-pct.pfull{color:var(--text-muted);}
+  .rr-badge{
+    justify-self:end;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;
+    background:rgba(255,255,255,0.08);color:var(--text-muted);text-align:center;
+  }
+
+  /* Comércio / Regimes */
+  .regime-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px;}
+  .regime-card{
+    background:var(--bg-card);border:1px solid var(--border-soft);border-radius:16px;padding:20px;
+    display:flex;flex-direction:column;
+  }
+  .regime-card .rg-tag{
+    display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    padding:5px 12px;border-radius:999px;margin-bottom:10px;width:fit-content;
+  }
+  .regime-card h3{font-size:1.1rem;font-weight:700;margin-bottom:10px;}
+  .regime-card p{color:var(--text-muted);font-size:14px;line-height:1.65;margin-bottom:10px;}
+  .regime-card ul{list-style:none;margin-top:8px;}
+  .regime-card li{color:var(--text-muted);font-size:13.5px;line-height:1.7;padding-left:18px;position:relative;}
+  .regime-card li::before{content:"›";position:absolute;left:0;color:var(--cyan);font-weight:700;}
+
+  /* MEI callout */
+  .mei-box{
+    margin-top:0;
+    display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;
+    background:linear-gradient(135deg,rgba(255,207,92,.10),rgba(56,189,248,.08));
+    border:1px solid rgba(255,207,92,.25);border-radius:18px;padding:22px;
+  }
+  .mei-box .mei-icon{
+    width:60px;height:60px;border-radius:16px;flex-shrink:0;
+    background:linear-gradient(135deg,var(--gold),var(--cyan));
+    display:flex;align-items:center;justify-content:center;font-size:26px;
+  }
+  .mei-box h3{font-size:1.2rem;font-weight:700;margin-bottom:8px;}
+  .mei-box p{color:var(--text-muted);font-size:14.5px;line-height:1.65;}
+  .mei-box .btn-secondary{white-space:nowrap;}
+
+  /* Contact / footer */
+  .contact-section{padding:52px 32px 0;}
+  .contact-grid{
+    display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:stretch;
+  }
+  .contact-left h2{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:800;line-height:1.2;margin-bottom:16px;}
+  .contact-left .hl{background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .contact-left p{color:var(--text-muted);font-size:1rem;max-width:460px;margin-bottom:20px;}
+  .contact-item{
+    display:flex;align-items:center;gap:14px;
+    background:var(--bg-card);border:1px solid var(--border-soft);border-radius:14px;
+    padding:14px 18px;margin-bottom:12px;
+  }
+  .contact-item .ci-icon{
+    width:42px;height:42px;border-radius:12px;background:rgba(47,111,237,.18);
+    display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
+  }
+  .contact-item .ci-label{font-size:11.5px;letter-spacing:.06em;color:var(--cyan);font-weight:700;text-transform:uppercase;}
+  .contact-item .ci-value{font-size:15.5px;font-weight:600;}
+
+  .contact-card{
+    background:linear-gradient(160deg,rgba(47,111,237,.22),rgba(139,127,246,.14));
+    border:1px solid var(--border-soft);border-radius:20px;
+    padding:30px 26px;display:flex;flex-direction:column;align-items:center;text-align:center;
+  }
+  .contact-card .logo-mark{width:56px;height:56px;font-size:24px;margin-bottom:12px;}
+  .contact-card h3{font-size:1.3rem;font-weight:700;}
+  .contact-card .sub{font-size:12px;color:var(--cyan);letter-spacing:.05em;font-weight:600;margin-bottom:16px;}
+  .btn-wpp-full{
+    width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);
+    padding:12px 20px;border-radius:999px;font-weight:700;font-size:14.5px;
+    display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;
+  }
+  .or-divider{display:flex;align-items:center;gap:14px;width:100%;color:var(--text-muted);font-size:12px;margin-bottom:12px;}
+  .or-divider::before,.or-divider::after{content:"";flex:1;height:1px;background:var(--border-soft);}
+  .contact-card .email{color:var(--cyan);font-weight:600;margin-bottom:10px;}
+  .contact-card .foot-note{color:var(--text-muted);font-size:12.5px;}
+
+  footer{margin-top:36px;border-top:1px solid var(--border-soft);padding:18px 32px;}
+  .footer-inner{
+    max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;
+    flex-wrap:wrap;gap:10px;color:var(--text-muted);font-size:13.5px;
+  }
+  .footer-inner b{color:var(--text-main);}
+  .footer-inner a{color:var(--cyan);font-weight:600;}
+
+  @media(max-width:900px){
+    nav.links{display:none;}
+    .mobile-toggle{display:block;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    .services-grid{grid-template-columns:1fr 1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .timeline-track{grid-template-columns:1fr 1fr;row-gap:36px;}
+    .timeline-track::before{display:none;}
+    .reform-cards{grid-template-columns:1fr;}
+    .regime-grid{grid-template-columns:1fr;}
+    .rate-row{grid-template-columns:1fr;text-align:left;row-gap:6px;}
+    .rate-row .rr-pct{text-align:left;}
+    .mei-box{grid-template-columns:1fr;text-align:center;}
+    .mei-box .mei-icon{margin:0 auto;}
+    .ai-panel{text-align:center;justify-content:center;}
+    .ai-icon{margin:0 auto;}
+    .ai-badges{justify-content:center;}
+  }
+  @media(max-width:560px){
+    .services-grid{grid-template-columns:1fr;}
+    .pro-panel{padding:32px 24px;}
+    .timeline-track{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="logo-mark">S</div>
+      <div class="brand-text">
+        <div class="brand-name">Skarvanis</div>
+        <div class="brand-sub">GESTÃO CONTÁBIL E FINANCEIRA</div>
+      </div>
+    </div>
+    <nav class="links">
+      <a href="#servicos">Serviços</a>
+      <a href="#ia">IA</a>
+      <a href="#reforma">Reforma Tributária</a>
+      <a href="#comercio">Comércio</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="btn-wpp" href="https://wa.me/5586988330845" target="_blank">📲 WhatsApp</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="badge"><span class="dot"></span> CONTABILIDADE INTELIGENTE E DIGITAL</div>
+  <h1>
+    Sua <span class="g1">contabilidade</span> <span class="g2">sem complicação,</span><br>
+    <span class="g3">na palma da sua mão</span>
+  </h1>
+  <p class="lead">Gestão contábil e financeira completa para pessoas físicas e jurídicas. Escritório digital e automatizado, com atendimento online.</p>
+  <div class="hero-ctas">
+    <a class="btn-primary" href="#servicos">Nossos Serviços</a>
+    <a class="btn-secondary" href="#contato">Fale Conosco</a>
+  </div>
+  <div class="pill-row">
+    <div class="pill">⚡ Inteligente</div>
+    <div class="pill">💻 Digital e Automatizada</div>
+    <div class="pill">🎯 Preciso</div>
+    <div class="pill">☀️ Serviços com IA</div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stats-grid">
+    <div class="stat"><h3>Online</h3><span>Preciso</span></div>
+    <div class="stat"><h3>Digital</h3><span>Automatizado e Digital</span></div>
+    <div class="stat"><h3>PF & PJ</h3><span>Atendimento Completo</span></div>
+    <div class="stat"><h3>IA</h3><span>Serviços com Inteligência Artificial</span></div>
+  </div>
+</div>
+
+<section class="block" id="profissionais">
+  <div class="wrap">
+    <div class="pro-panel">
+      <div class="pro-icon">🩺</div>
+      <div class="pro-content">
+        <div class="eyebrow">Atendimento Especializado</div>
+        <h2 class="section-title">Atendemos <span class="accent">Profissionais Liberais</span> de todas as áreas</h2>
+        <div class="pro-tags"><b>Médicos</b> · <b>Dentistas</b> · <b>Fisioterapeutas</b> · <b>Advogados</b> · <b>Engenheiros</b> · <b>Arquitetos</b> · <b>Publicitários</b> e Prestadores de Serviços em geral</div>
+      </div>
+      <a class="btn-primary" href="#contato">📲 Fale conosco</a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="servicos">
+  <div class="wrap">
+    <div class="services-head">
+      <div>
+        <div class="eyebrow">O que oferecemos</div>
+        <h2 class="section-title">Serviços <span class="accent">Inteligentes</span> para sua vida financeira</h2>
+        <p class="section-sub">Soluções contábeis e financeiras completas, automatizadas e digitais, atendendo pessoas físicas e jurídicas com excelência e tecnologia.</p>
+      </div>
+      <div class="modes-row">
+        <div class="mode-card"><span class="mlabel">Modo</span><span class="mvalue">⚡ Inteligente</span></div>
+        <div class="mode-card"><span class="mlabel">Formato</span><span class="mvalue">💻 Digital e Automatizado</span></div>
+        <div class="mode-card"><span class="mlabel">Atendimento</span><span class="mvalue">🎯 Preciso</span></div>
+      </div>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📄</div>
+        <h3>Escrituração Contábil</h3>
+        <p>Organização completa da contabilidade da sua empresa, com relatórios claros e sempre atualizados.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Consultoria Fiscal e Tributária</h3>
+        <p>Planejamento tributário estratégico para reduzir custos e manter sua empresa em dia com o Fisco.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💰</div>
+        <h3>Folha de Pagamento</h3>
+        <p>Gestão completa de folha, encargos e obrigações trabalhistas, sem dor de cabeça.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <h3>Abertura de Empresas</h3>
+        <p>Todo o processo de constituição do seu negócio, do enquadramento tributário ao alvará.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📁</div>
+        <h3>Obrigações Acessórias</h3>
+        <p>Envio e controle de todas as declarações exigidas, com prazos monitorados de forma automatizada.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <h3>Consultoria para Profissionais Liberais</h3>
+        <p>Orientação personalizada para autônomos e profissionais liberais organizarem sua vida fiscal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block ai-section" id="ia">
+  <div class="wrap">
+    <div class="ai-panel">
+      <div class="ai-icon">🤖</div>
+      <div class="ai-content">
+        <div class="eyebrow">Tecnologia a favor da sua gestão</div>
+        <h2 class="section-title">Contabilidade com <span class="accent">Inteligência Artificial</span></h2>
+        <p>Com o uso de IA, ficou mais fácil e eficiente gerar documentos, relatórios e análises contábeis com as informações certas na hora certa. Isso significa relatórios gerenciais mais rápidos, dados organizados automaticamente e insights claros para embasar decisões importantes do seu negócio — sem depender de processos manuais e demorados.</p>
+        <div class="ai-badges">
+          <span>📄 Geração automática de relatórios</span>
+          <span>⚡ Respostas mais rápidas</span>
+          <span>📊 Dados organizados para decisão</span>
+          <span>🕐 Disponível quando você precisar</span>
+        </div>
+      </div>
+      <a class="btn-primary" href="https://wa.me/5586988330845" target="_blank">📲 Saiba mais</a>
+    </div>
+  </div>
+</section>
+
+<section class="block reform-section" id="reforma">
+  <div class="wrap">
+    <div class="reform-head">
+      <div class="eyebrow">Informativo</div>
+      <h2 class="section-title">Reforma Tributária: o que muda para <span class="accent">serviços e saúde</span></h2>
+      <p class="section-sub">A transição do PIS, COFINS, ICMS e ISS para o novo IVA Dual (CBS + IBS) já começou. Reunimos os pontos principais para você acompanhar de perto, sem sustos — incluindo o desconto especial para a área da saúde.</p>
+    </div>
+
+    <div class="reform-alert">
+      <div class="ra-icon">⚠️</div>
+      <p><b>Atenção, prestadores de serviço:</b> diferente da indústria, o setor de serviços costuma ter poucos insumos para gerar crédito tributário. Como a folha de pagamento não gera crédito de IVA, empresas intensivas em mão de obra tendem a sentir mais o impacto da alíquota cheia — hoje estimada entre 26,5% e 28,6%. A boa notícia é que a <b>área da saúde tem redução de 60%</b> prevista em lei, e outras categorias, como advocacia, engenharia e arquitetura, também têm regras diferenciadas em regulamentação.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-track">
+        <div class="tl-item">
+          <div class="tl-dot">26</div>
+          <h4>2026 — Fase de testes</h4>
+          <p>Cobrança simbólica de CBS (0,9%) e IBS (0,1%), sem efeito financeiro real. Notas fiscais já destacam os novos tributos.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">27</div>
+          <h4>2027 — CBS entra em vigor</h4>
+          <p>PIS e COFINS são extintos. A CBS passa a valer com alíquota cheia (~8,8%). O IPI cai a zero para a maioria dos setores.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">32</div>
+          <h4>2029 a 2032 — Transição do IBS</h4>
+          <p>ICMS e ISS caem gradualmente enquanto o IBS aumenta, até a substituição completa dos tributos estaduais e municipais.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">33</div>
+          <h4>2033 — Sistema definitivo</h4>
+          <p>ICMS e ISS deixam de existir. O novo modelo passa a operar com alíquota plena de CBS e IBS em todo o país.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reform-cards">
+      <div class="reform-card" style="border-color:rgba(56,189,248,.35);background:linear-gradient(160deg,rgba(56,189,248,.10),rgba(139,127,246,.06));">
+        <div class="rc-icon" style="background:rgba(56,189,248,.18);">🩺</div>
+        <h3>Desconto de 60% para a Saúde</h3>
+        <p>A LC 214/2025 prevê redução de 60% na alíquota de IBS e CBS para serviços de saúde — médicos, odontologia, fisioterapia, psicologia e demais atendimentos. Na prática, a alíquota efetiva cai de cerca de 27% para a faixa de 10% a 11%. Também há isenção ou desconto para medicamentos e dispositivos médicos.</p>
+      </div>
+      <div class="reform-card">
+        <div class="rc-icon">🧾</div>
+        <h3>Simples Nacional é mantido</h3>
+        <p>Empresas do Simples continuam com o recolhimento unificado via DAS, mas precisarão se adaptar a novas regras de crédito e obrigações acessórias do IVA.</p>
+      </div>
+      <div class="reform-card">
+        <div class="rc-icon">📉</div>
+        <h3>Regimes diferenciados</h3>
+        <p>Além da saúde, outras profissões liberais regulamentadas (advocacia, engenharia, arquitetura) podem ter redução de alíquota. As regras variam por atividade e ainda estão sendo detalhadas.</p>
+      </div>
+      <div class="reform-card">
+        <div class="rc-icon">🧭</div>
+        <h3>Planejamento é essencial</h3>
+        <p>Rever contratos, precificação e estrutura tributária agora evita surpresas na virada de cada fase da transição, que vai até 2033.</p>
+      </div>
+    </div>
+
+    <div class="rate-table">
+      <h3 class="sub-title">Percentuais de desconto por categoria</h3>
+      <p class="sub-note">Redução aplicada sobre a alíquota padrão do IVA (IBS + CBS), hoje estimada entre 26,5% e 28,6%. Cada categoria tem requisitos próprios definidos na LC 214/2025.</p>
+      <div class="rate-rows">
+        <div class="rate-row">
+          <div>
+            <div class="rr-name">Saúde</div>
+            <div class="rr-desc">Medicina, odontologia, fisioterapia, psicologia, enfermagem e demais atendimentos de saúde</div>
+          </div>
+          <div class="rr-pct p60">− 60%</div>
+        </div>
+        <div class="rate-row">
+          <div>
+            <div class="rr-name">Educação</div>
+            <div class="rr-desc">Instituições de ensino regular e cursos reconhecidos</div>
+          </div>
+          <div class="rr-pct p60">− 60%</div>
+        </div>
+        <div class="rate-row">
+          <div>
+            <div class="rr-name">Produções culturais, artísticas e jornalísticas</div>
+            <div class="rr-desc">Serviços vinculados a obras nacionais</div>
+          </div>
+          <div class="rr-pct p60">− 60%</div>
+        </div>
+        <div class="rate-row">
+          <div>
+            <div class="rr-name">Serviços agropecuários</div>
+            <div class="rr-desc">Atividades ligadas à produção rural</div>
+          </div>
+          <div class="rr-pct p60">− 60%</div>
+        </div>
+        <div class="rate-row">
+          <div>
+            <div class="rr-name">Profissões regulamentadas</div>
+            <div class="rr-desc">Advogados, contadores, engenheiros, arquitetos, médicos, administradores, economistas e outras 18 categorias do art. 127 da LC 214/2025 — pessoa física ou sociedade uniprofissional</div>
+          </div>
+          <div class="rr-pct p30">− 30%</div>
+        </div>
+        <div class="rate-row">
+          <div>
+            <div class="rr-name">Transporte público coletivo urbano</div>
+            <div class="rr-desc">Ônibus, metrô e trens urbanos</div>
+          </div>
+          <div class="rr-pct p100">Isento</div>
+        </div>
+        <div class="rate-row">
+          <div>
+            <div class="rr-name">Demais serviços (sem regime diferenciado)</div>
+            <div class="rr-desc">Tecnologia, consultoria, marketing e serviços corporativos B2B em geral</div>
+          </div>
+          <div class="rr-pct pfull">Alíquota cheia</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reform-cta">
+      <p>Cada atividade tem uma regra diferente dentro da reforma. Fale com a gente para entender o impacto específico no seu negócio.</p>
+      <a class="btn-primary" href="https://wa.me/5586988330845" target="_blank">📲 Tirar dúvidas sobre a Reforma</a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="novidades">
+  <div class="wrap">
+    <div class="reform-head">
+      <div class="eyebrow">Atualização · Julho 2026</div>
+      <h2 class="section-title">Últimas novidades para quem <span class="accent">presta serviços</span></h2>
+      <p class="section-sub">O cronograma da reforma está avançando rápido. Separamos as movimentações mais recentes e que exigem atenção imediata de prestadores de serviço e profissionais liberais.</p>
+    </div>
+
+    <div class="reform-alert">
+      <div class="ra-icon">🚨</div>
+      <p><b>Prazo apertado:</b> a partir de 3 de agosto de 2026, documentos fiscais eletrônicos (NF-e, NFS-e, NFC-e e demais) emitidos sem os campos de IBS e CBS preenchidos passam a ser <b>rejeitados</b> para empresas do regime regular. O período de tolerância para preenchimento facultativo termina em 31 de julho — quem ainda não ajustou o sistema precisa correr.</p>
+    </div>
+
+    <div class="reform-cards">
+      <div class="reform-card">
+        <div class="rc-icon">🪪</div>
+        <h3>CNPJ para profissionais liberais</h3>
+        <p>Desde julho de 2026, pessoas físicas contribuintes de IBS/CBS — como advogados, consultores, produtores rurais e transportadores autônomos — precisam se inscrever no CNPJ. Isso não transforma a pessoa em empresa: serve apenas para facilitar a apuração dos novos tributos.</p>
+      </div>
+      <div class="reform-card">
+        <div class="rc-icon">🏛️</div>
+        <h3>Comitê Gestor regulamentado</h3>
+        <p>A LC 227/2026 regulamentou o Comitê Gestor do IBS, trouxe mudanças no ITCMD e ajustou pontos da LC 224/2025, consolidando a governança compartilhada entre estados e municípios sobre o novo imposto.</p>
+      </div>
+      <div class="reform-card">
+        <div class="rc-icon">📈</div>
+        <h3>Serviços sentem alta nominal</h3>
+        <p>Análises recentes do mercado apontam que o setor de serviços deve sentir aumento nominal de alíquota ao longo da transição, enquanto a indústria tende a se beneficiar mais do crédito pleno sobre insumos — reforçando a importância de planejar com antecedência.</p>
+      </div>
+      <div class="reform-card">
+        <div class="rc-icon">🚬</div>
+        <h3>Imposto Seletivo entra em cena</h3>
+        <p>Além do IBS e da CBS, o novo Imposto Seletivo (o "imposto do pecado") passa a incidir sobre cigarros, bebidas alcoólicas, refrigerantes e veículos poluentes. Não afeta a maioria dos serviços diretamente, mas completa o novo desenho tributário.</p>
+      </div>
+    </div>
+
+    <div class="reform-cta">
+      <p>Os prazos de agosto estão próximos e podem pegar sua empresa desprevenida. Fale com a gente e revise seus processos antes que as regras fiquem obrigatórias.</p>
+      <a class="btn-primary" href="https://wa.me/5586988330845" target="_blank">📲 Revisar minha empresa agora</a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="comercio">
+  <div class="wrap">
+    <div class="reform-head">
+      <div class="eyebrow">Informativo</div>
+      <h2 class="section-title">Comércio: qual regime tributário faz mais sentido?</h2>
+      <p class="section-sub">Com o fim gradual da cumulatividade e a chegada do Split Payment, a escolha entre Simples Nacional, Lucro Presumido e Lucro Real passa a pesar ainda mais no caixa do seu negócio.</p>
+    </div>
+
+    <div class="regime-grid">
+      <div class="regime-card">
+        <span class="rg-tag" style="background:rgba(56,189,248,.15);color:var(--cyan);">Simples Nacional</span>
+        <h3>Recolhimento unificado</h3>
+        <p>Continua existindo, com o comércio enquadrado no Anexo I. Segue sendo vantajoso para negócios menores e com venda direta ao consumidor final (B2C).</p>
+        <ul>
+          <li>Guia única (DAS), menos burocracia</li>
+          <li>Crédito de IBS/CBS limitado ao que foi pago na guia</li>
+          <li>Pode perder competitividade em vendas B2B</li>
+        </ul>
+      </div>
+      <div class="regime-card">
+        <span class="rg-tag" style="background:rgba(255,207,92,.15);color:var(--gold);">Lucro Presumido</span>
+        <h3>Presunção de 8% para comércio</h3>
+        <p>A margem presumida do comércio (8%) tende a ser mais próxima da realidade do que a de serviços (32%), o que ainda favorece muitos varejistas.</p>
+        <ul>
+          <li>2026 é o último ano no modelo cumulativo</li>
+          <li>A partir de 2027, passa a seguir as mesmas regras de crédito do Lucro Real para IBS/CBS</li>
+          <li>Boa opção para margens de lucro estáveis e previsíveis</li>
+        </ul>
+      </div>
+      <div class="regime-card">
+        <span class="rg-tag" style="background:rgba(139,127,246,.18);color:var(--purple);">Lucro Real</span>
+        <h3>Crédito integral sobre insumos</h3>
+        <p>Empresas com alto volume de compras, estoque, embalagens e fornecedores tributados tendem a recuperar mais imposto nesse regime, com a não cumulatividade plena do IVA.</p>
+        <ul>
+          <li>Ideal para operações com margem apertada e muitos insumos</li>
+          <li>Exige apuração mais detalhada e controles de crédito</li>
+          <li>Split Payment torna o recolhimento automático nas vendas com cartão e Pix</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block reform-section" id="mei">
+  <div class="wrap">
+    <div class="mei-box">
+      <div class="mei-icon">🧑‍💼</div>
+      <div>
+        <h3>E o MEI, muda alguma coisa?</h3>
+        <p>Por enquanto, não. Os Microempreendedores Individuais estão dispensados das obrigações da fase de testes de 2026 e continuam recolhendo pelo DAS normalmente, sem destacar IBS/CBS nas notas. A partir de 2027, o MEI passa a conviver com o novo sistema nas compras e vendas para outras empresas, e terá prazo (até setembro de 2026) para decidir se permanece no regime simplificado ou migra para o modelo do IVA Dual. Vale ficar de olho nas atualizações e conversar com seu contador antes de decidir.</p>
+      </div>
+      <a class="btn-secondary" href="https://wa.me/5586988330845" target="_blank">Falar sobre meu MEI</a>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contato">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <h2>Vamos cuidar da sua <span class="hl">contabilidade</span> juntos?</h2>
+        <p>Nossa equipe está pronta para atender você. Entre em contato pelo canal de sua preferência.</p>
+        <div class="contact-item">
+          <div class="ci-icon">📲</div>
+          <div>
+            <div class="ci-label">WhatsApp</div>
+            <div class="ci-value">(86) 988 330 845</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">📧</div>
+          <div>
+            <div class="ci-label">E-mail</div>
+            <div class="ci-value">contato@skarvanis.com.br</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="logo-mark">S</div>
+        <h3>Skarvanis</h3>
+        <div class="sub">GESTÃO CONTÁBIL E FINANCEIRA</div>
+        <a class="btn-wpp-full" href="https://wa.me/5586988330845" target="_blank">💬 Falar pelo WhatsApp</a>
+        <div class="or-divider">OU</div>
+        <div class="email">contato@skarvanis.com.br</div>
+        <div class="foot-note">Automatizado e Digital · Atendimento Online e Preciso · PF e PJ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>© 2026 <b>Skarvanis</b> – Gestão Contábil e Financeira · Todos os direitos reservados</div>
+    <a href="#">Stelios Karvanis</a>
+  </div>
+</footer>
+
+</body>
+</html>
