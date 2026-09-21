@@ -1,0 +1,21 @@
+name: Verificar numero de WhatsApp publicado
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Conferir se o site publicado ainda tem o numero esperado
+        run: |
+          EXPECTED="5586988330845"
+          URL="https://stelioskarvanis-cloud.github.io/skarvanis-site/"
+          content=$(curl -fsSL "$URL")
+          if ! echo "$content" | grep -q "$EXPECTED"; then
+            echo "::error::Numero de WhatsApp esperado ($EXPECTED) NAO foi encontrado em $URL. O site pode ter sido alterado sem autorizacao."
+            exit 1
+          fi
+          echo "OK: numero de WhatsApp confere em $URL"
