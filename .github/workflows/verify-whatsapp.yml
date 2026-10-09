@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Conferir se o site publicado ainda tem o numero esperado
         run: |
-          EXPECTED="5586988330845"
+          EXPECTED="5586988779499"
           URL="https://stelioskarvanis-cloud.github.io/skarvanis-site/"
           content=$(curl -fsSL "$URL")
           if ! echo "$content" | grep -q "$EXPECTED"; then
