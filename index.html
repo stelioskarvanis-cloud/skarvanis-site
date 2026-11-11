@@ -50,7 +50,7 @@
   }
   .brand-text .brand-name{font-size:19px;font-weight:700;line-height:1.1;}
   .brand-text .brand-sub{font-size:11px;letter-spacing:.08em;color:var(--cyan);font-weight:600;}
-  nav.links{display:flex;gap:36px;}
+  nav.links{display:flex;gap:26px;}
   nav.links a{font-size:14.5px;color:var(--text-muted);font-weight:500;transition:color .2s;}
   nav.links a:hover{color:#fff;}
   .btn-wpp{
@@ -297,6 +297,31 @@
   .mei-box p{color:var(--text-muted);font-size:14.5px;line-height:1.65;}
   .mei-box .btn-secondary{white-space:nowrap;}
 
+  /* Como funciona */
+  .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px;}
+  .step-card{
+    background:var(--bg-card);border:1px solid var(--border-soft);border-radius:16px;padding:22px;
+  }
+  .step-num{
+    width:40px;height:40px;border-radius:50%;margin-bottom:12px;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Sora',sans-serif;font-weight:800;color:#0b1330;
+  }
+  .step-card h3{font-size:1.05rem;font-weight:700;margin-bottom:6px;}
+  .step-card p{color:var(--text-muted);font-size:14.5px;line-height:1.6;}
+
+  /* Perguntas frequentes */
+  .faq-list{margin-top:26px;display:flex;flex-direction:column;gap:12px;max-width:860px;}
+  .faq-list details{
+    background:var(--bg-card);border:1px solid var(--border-soft);border-radius:14px;padding:16px 20px;
+  }
+  .faq-list summary{cursor:pointer;font-weight:600;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;gap:16px;}
+  .faq-list summary::-webkit-details-marker{display:none;}
+  .faq-list summary::after{content:"+";color:var(--cyan);font-weight:800;font-size:20px;line-height:1;}
+  .faq-list details[open] summary::after{content:"–";}
+  .faq-list details p{color:var(--text-muted);font-size:14.5px;line-height:1.7;margin-top:12px;}
+
   /* Contact / footer */
   .contact-section{padding:52px 32px 0;}
   .contact-grid{
@@ -348,6 +373,7 @@
     .mobile-toggle{display:block;}
     .stats-grid{grid-template-columns:repeat(2,1fr);}
     .services-grid{grid-template-columns:1fr 1fr;}
+    .steps-grid{grid-template-columns:1fr;}
     .contact-grid{grid-template-columns:1fr;}
     .timeline-track{grid-template-columns:1fr 1fr;row-gap:36px;}
     .timeline-track::before{display:none;}
@@ -382,8 +408,10 @@
     <nav class="links">
       <a href="#servicos">Serviços</a>
       <a href="#ia">IA</a>
+      <a href="#rotinas">Rotinas</a>
       <a href="#reforma">Reforma Tributária</a>
       <a href="#comercio">Comércio</a>
+      <a href="#faq">Perguntas</a>
       <a href="#contato">Contato</a>
     </nav>
     <a class="btn-wpp" href="https://wa.me/5586988779499" target="_blank">📲 WhatsApp</a>
@@ -421,11 +449,11 @@
 <section class="block" id="profissionais">
   <div class="wrap">
     <div class="pro-panel">
-      <div class="pro-icon">🩺</div>
+      <div class="pro-icon">🏢</div>
       <div class="pro-content">
         <div class="eyebrow">Atendimento Especializado</div>
-        <h2 class="section-title">Atendemos <span class="accent">Profissionais Liberais</span> de todas as áreas</h2>
-        <div class="pro-tags"><b>Médicos</b> · <b>Dentistas</b> · <b>Fisioterapeutas</b> · <b>Advogados</b> · <b>Engenheiros</b> · <b>Arquitetos</b> · <b>Publicitários</b> e Prestadores de Serviços em geral</div>
+        <h2 class="section-title">Atendemos <span class="accent">empresas e profissionais</span> de todas as áreas</h2>
+        <div class="pro-tags"><b>Lojas do varejo</b> · <b>Clínicas</b> · <b>Imobiliárias</b> · <b>Academias</b> · <b>Distribuidores</b> · <b>Prestadores de serviços</b> · <b>Profissionais liberais</b> (médicos, dentistas, fisioterapeutas, advogados, engenheiros, arquitetos, publicitários) e outros mais</div>
       </div>
       <a class="btn-primary" href="#contato">📲 Fale conosco</a>
     </div>
@@ -489,15 +517,85 @@
       <div class="ai-content">
         <div class="eyebrow">Tecnologia a favor da sua gestão</div>
         <h2 class="section-title">Contabilidade com <span class="accent">Inteligência Artificial</span></h2>
-        <p>Com o uso de IA, ficou mais fácil e eficiente gerar documentos, relatórios e análises contábeis com as informações certas na hora certa. Isso significa relatórios gerenciais mais rápidos, dados organizados automaticamente e insights claros para embasar decisões importantes do seu negócio — sem depender de processos manuais e demorados.</p>
+        <p>A Skarvanis desenvolveu seu próprio aplicativo de gestão contábil, com Inteligência Artificial. Ele importa notas fiscais, extratos e documentos, gera relatórios e indicadores na hora, emite DARF e consulta a situação fiscal automaticamente, e simula o impacto da Reforma Tributária na sua empresa. O sistema gera, o contador confere e libera para você.</p>
         <div class="ai-badges">
           <span>📄 Geração automática de relatórios</span>
-          <span>⚡ Respostas mais rápidas</span>
+          <span>🧾 Emite DARF automaticamente</span>
+          <span>🔎 Situação fiscal automática</span>
+          <span>🧮 Simulação da Reforma Tributária</span>
           <span>📊 Dados organizados para decisão</span>
           <span>🕐 Disponível quando você precisar</span>
         </div>
       </div>
       <a class="btn-primary" href="https://wa.me/5586988779499" target="_blank">📲 Saiba mais</a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="rotinas">
+  <div class="wrap">
+    <div class="eyebrow">Bastidores</div>
+    <h2 class="section-title">Rotinas da <span class="accent">Skarvanis Contabilidade</span></h2>
+    <p class="section-sub">Veja o que acontece no dia a dia da sua contabilidade. O sistema gera, o contador confere e libera para você.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📥</div>
+        <h3>Entrada de documentos</h3>
+        <p>Documentos conferidos na entrada. Notas fiscais, certidões, situação fiscal e DARF importados automaticamente.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏦</div>
+        <h3>Extratos e notas fiscais</h3>
+        <p>Importação dos extratos bancários, com cada lançamento classificado, e conferência das notas de compra, venda e serviço.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📈</div>
+        <h3>Relatórios e indicadores</h3>
+        <p>Balancetes, demonstrações contábeis, fluxo de caixa, faturamento, margem de lucro, ponto de equilíbrio e endividamento, por mês, trimestre ou ano.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚨</div>
+        <h3>Alertas e sugestões</h3>
+        <p>O sistema avisa quando um indicador sai do esperado e sugere ações, para você agir antes que o problema apareça.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🩺</div>
+        <h3>Clínicas</h3>
+        <p>Notas de serviço conferidas, conciliação de convênios e cartões, glosas e repasses pendentes, e relatórios por médico, convênio e procedimento.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧭</div>
+        <h3>Preparação para a reforma</h3>
+        <p>Classificação de produtos e serviços, busca de créditos nas notas de compra, comparação entre regimes e simulação do novo preço de venda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="como-funciona">
+  <div class="wrap">
+    <div class="eyebrow">Passo a passo</div>
+    <h2 class="section-title">Como <span class="accent">funciona</span></h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Fale conosco ou peça um orçamento</h3>
+        <p>Chame a Skarvanis pelo WhatsApp e conte sobre a sua empresa.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Diagnóstico</h3>
+        <p>Analisamos sua atividade, seu regime tributário e seus documentos.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Contabilidade rodando</h3>
+        <p>O sistema gera, o contador confere e libera para você.</p>
+      </div>
+    </div>
+    <div class="reform-cta">
+      <a class="btn-primary" href="https://wa.me/5586988779499?text=Ol%C3%A1%2C%20gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20empresa." target="_blank">📲 Solicitar orçamento</a>
     </div>
   </div>
 </section>
@@ -629,19 +727,19 @@
 <section class="block" id="novidades">
   <div class="wrap">
     <div class="reform-head">
-      <div class="eyebrow">Atualização · Outubro 2026</div>
+      <div class="eyebrow">Atualização · Novembro 2026</div>
       <h2 class="section-title">Últimas novidades para quem <span class="accent">presta serviços</span></h2>
       <p class="section-sub">O cronograma da reforma está avançando rápido. Separamos as movimentações mais recentes e que exigem atenção imediata de prestadores de serviço e profissionais liberais.</p>
     </div>
 
     <div class="reform-alert">
       <div class="ra-icon">🗓️</div>
-      <p><b>Prazo prorrogado — Simples Nacional:</b> a Resolução CGSN nº 194/2026 estendeu o calendário. Empresas do Simples têm até <b>30 de outubro de 2026</b> para escolher se o IBS e a CBS serão recolhidos a partir de 2027 dentro da guia única do DAS (modelo padrão, aplicado a quem não se manifestar) ou pelo regime regular, fora do Simples, para esses dois tributos. Até 30/10 também vai o prazo para regularizar pendências de quem pediu para entrar no Simples em 2027. Quem mudar de ideia pode desistir da opção de 3 de novembro a 20 de dezembro de 2026, e haverá nova chance de escolha em março de 2027, valendo para o segundo semestre.</p>
+      <p><b>Simples Nacional, IBS e CBS:</b> os prazos de opção da Resolução CGSN nº 194/2026 já terminaram — <b>15 de outubro</b> para a opção pelo Simples e <b>30 de outubro</b> para a opção pelo regime regular de IBS e CBS. Agora, até <b>20 de dezembro de 2026</b>, a empresa pode <b>cancelar</b> a opção de recolhimento do IBS e da CBS. O cancelamento é irretratável, por isso a decisão deve ser analisada antes. Quem não se manifestou segue com IBS e CBS dentro do DAS no primeiro semestre de 2027.</p>
     </div>
 
     <div class="reform-alert" style="margin-top:14px;">
       <div class="ra-icon">✅</div>
-      <p><b>NFS-e: o Emissor Nacional ainda não é obrigatório.</b> Para empresas do Simples Nacional, o uso passa a ser obrigatório em <b>1º de novembro de 2026</b> (Resolução CGSN nº 191/2026). Para pessoa física e para empresas do Lucro Presumido e do Lucro Real, ainda não há data definida — <b>aguardando definição</b>. Os campos de IBS e CBS na nota de serviço já estão previstos para empresas fora do Simples, mas a nota sem esses campos não está sendo bloqueada; para o Simples, eles só passam a valer em 1º de janeiro de 2027.</p>
+      <p><b>NFS-e: Emissor Nacional obrigatório para o Simples Nacional.</b> Desde <b>1º de novembro de 2026</b>, as empresas do Simples (ME e EPP) devem emitir a nota de serviço pelo Emissor Nacional (Resolução CGSN nº 191/2026). Até 31 de dezembro de 2026 não se aplicam as regras de IBS e CBS; elas passam a valer em <b>1º de janeiro de 2027</b>. Para pessoa física e para empresas do Lucro Presumido e do Lucro Real, ainda não há data definida — <b>aguardando definição</b>.</p>
     </div>
 
     <div class="reform-cards">
@@ -668,8 +766,42 @@
     </div>
 
     <div class="reform-cta">
-      <p>A escolha de como o Simples Nacional vai recolher o IBS e a CBS em 2027 vai até 30 de outubro. Fale com a gente antes que a decisão seja tomada automaticamente pelo sistema.</p>
+      <p>O prazo para cancelar a opção de recolhimento do IBS e da CBS no Simples Nacional vai até 20 de dezembro. Fale com a gente antes de decidir.</p>
       <a class="btn-primary" href="https://wa.me/5586988779499" target="_blank">📲 Revisar minha empresa agora</a>
+    </div>
+  </div>
+</section>
+
+<section class="block reform-section" id="calendario">
+  <div class="wrap">
+    <div class="reform-head">
+      <div class="eyebrow">Agenda · Novembro 2026</div>
+      <h2 class="section-title">Calendário de <span class="accent">obrigações</span> do mês</h2>
+      <p class="section-sub">Os principais vencimentos de novembro. As datas seguem a agenda tributária da Receita Federal; confirme sempre a data do seu caso com a gente.</p>
+    </div>
+    <div class="rate-table">
+      <div class="rate-rows">
+        <div class="rate-row">
+          <div><div class="rr-name">eSocial (eventos periódicos) e EFD-Reinf</div><div class="rr-desc">Informações do mês de outubro</div></div>
+          <div class="rr-pct pfull">16/11</div>
+        </div>
+        <div class="rate-row">
+          <div><div class="rr-name">FGTS, DAE (MEI e doméstico) e IRRF</div><div class="rr-desc">Referentes ao mês de outubro</div></div>
+          <div class="rr-pct pfull">19/11</div>
+        </div>
+        <div class="rate-row">
+          <div><div class="rr-name">DAS do Simples Nacional, DAS-MEI e PGDAS-D</div><div class="rr-desc">Sobre a receita do mês de outubro</div></div>
+          <div class="rr-pct p30">23/11</div>
+        </div>
+        <div class="rate-row">
+          <div><div class="rr-name">PIS e Cofins</div><div class="rr-desc">Recolhimento do mês de outubro</div></div>
+          <div class="rr-pct pfull">25/11</div>
+        </div>
+        <div class="rate-row">
+          <div><div class="rr-name">DCTFWeb, IRPJ/CSLL mensais e carnê-leão</div><div class="rr-desc">Transmissão e recolhimento do mês de outubro</div></div>
+          <div class="rr-pct pfull">30/11</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -694,14 +826,14 @@
         <div class="rate-row">
           <div>
             <div class="rr-name">Pessoa física — autônomos e profissionais liberais</div>
-            <div class="rr-desc">Ainda não há data definida para o uso do Emissor Nacional. Em Teresina, a Prefeitura ainda não definiu — a emissão segue pelo sistema municipal</div>
+            <div class="rr-desc">Ainda não há data definida de obrigatoriedade para o uso do Emissor Nacional. Em Teresina, as notas já são emitidas pelo Portal Nacional</div>
           </div>
           <div class="rr-pct pfull">Aguardando definição</div>
         </div>
         <div class="rate-row">
           <div>
             <div class="rr-name">MEI — serviço para pessoa jurídica</div>
-            <div class="rr-desc">A Resolução CGSN nº 169/2022 prevê o Emissor Nacional, mas em Teresina a integração com a Prefeitura ainda não foi definida</div>
+            <div class="rr-desc">A Resolução CGSN nº 169/2022 prevê o Emissor Nacional. Em Teresina, as notas já são emitidas pelo Portal Nacional</div>
           </div>
           <div class="rr-pct pfull">Aguardando definição</div>
         </div>
@@ -715,9 +847,9 @@
         <div class="rate-row">
           <div>
             <div class="rr-name">Simples Nacional — ME e EPP</div>
-            <div class="rr-desc">Prazo adiado de setembro para novembro pela Resolução CGSN nº 191/2026</div>
+            <div class="rr-desc">Prazo adiado de setembro para novembro pela Resolução CGSN nº 191/2026. Até 31/12/2026 sem as regras de IBS/CBS; elas valem a partir de 01/01/2027</div>
           </div>
-          <div class="rr-pct p30">01/11/2026</div>
+          <div class="rr-pct p30">Em vigor desde 01/11/2026</div>
         </div>
         <div class="rate-row">
           <div>
@@ -793,6 +925,43 @@
   </div>
 </section>
 
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="eyebrow">Dúvidas</div>
+    <h2 class="section-title">Perguntas <span class="accent">frequentes</span></h2>
+    <div class="faq-list">
+      <details>
+        <summary>O MEI precisa emitir nota fiscal?</summary>
+        <p>O MEI deve emitir nota fiscal quando vende ou presta serviço para pessoa jurídica. Para o consumidor final (pessoa física), a emissão é facultativa, a menos que o cliente peça.</p>
+      </details>
+      <details>
+        <summary>Qual a diferença entre MEI, Simples Nacional e Lucro Presumido?</summary>
+        <p>O MEI paga uma guia de valor fixo (DAS-MEI). No Simples Nacional, os impostos vêm unificados em uma guia (DAS), calculada sobre o faturamento. No Lucro Presumido, os impostos são calculados sobre uma margem presumida da receita, com mais obrigações. A melhor escolha depende da atividade e das margens da empresa — fazemos a comparação com os números reais do seu negócio.</p>
+      </details>
+      <details>
+        <summary>Quanto custa o serviço de contabilidade?</summary>
+        <p>O valor depende da atividade, do regime tributário e do porte da empresa. Peça um orçamento pelo WhatsApp: (86) 98877-9499.</p>
+      </details>
+      <details>
+        <summary>O que muda com a Reforma Tributária em janeiro de 2027?</summary>
+        <p>Em janeiro de 2027 a CBS começa a valer de verdade e o PIS e a Cofins são extintos. Em 2026 é a fase de testes. Nosso aplicativo simula o impacto da reforma nos números da sua empresa.</p>
+      </details>
+      <details>
+        <summary>Que documentos preciso enviar todo mês?</summary>
+        <p>Extratos bancários, notas fiscais de compra, venda e serviço, e as informações da folha de pagamento. Na Skarvanis, os documentos são conferidos na entrada e o sistema importa as informações automaticamente.</p>
+      </details>
+      <details>
+        <summary>A inteligência artificial substitui o contador?</summary>
+        <p>Não. O sistema gera, o contador confere e libera para você. Tudo passa pela conferência da nossa equipe.</p>
+      </details>
+      <details>
+        <summary>Como é o atendimento?</summary>
+        <p>O atendimento é pelo WhatsApp: (86) 98877-9499.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <section class="contact-section" id="contato">
   <div class="wrap">
     <div class="contact-grid">
@@ -819,10 +988,11 @@
         <div class="logo-mark">S</div>
         <h3>Skarvanis</h3>
         <div class="sub">GESTÃO CONTÁBIL E FINANCEIRA</div>
-        <a class="btn-wpp-full" href="https://wa.me/5586988779499" target="_blank">💬 Falar pelo WhatsApp</a>
+        <a class="btn-wpp-full" href="https://wa.me/5586988779499?text=Ol%C3%A1%2C%20gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20empresa." target="_blank">💬 Solicitar orçamento pelo WhatsApp</a>
         <div class="or-divider">OU</div>
         <div class="email"><a href="mailto:stelioskarvanis@gmail.com" style="color:inherit;text-decoration:none">stelioskarvanis@gmail.com</a></div>
         <div class="foot-note">Automatizado e Digital · Atendimento Online e Preciso · PF e PJ</div>
+        <div class="foot-note" style="margin-top:8px;">Skarvanis · CRC PI-001276/O · Teresina-PI</div>
       </div>
     </div>
   </div>
@@ -831,7 +1001,7 @@
 <footer>
   <div class="footer-inner">
     <div>© 2026 <b>Skarvanis</b> – Gestão Contábil e Financeira · Todos os direitos reservados</div>
-    <a href="#">Stelios Karvanis</a>
+    <div>Skarvanis · CRC PI-001276/O · Teresina-PI</div>
   </div>
 </footer>
 
